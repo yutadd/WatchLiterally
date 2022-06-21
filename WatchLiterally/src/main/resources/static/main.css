@@ -2,5 +2,5 @@
 	background-color:#dedede;width:100%;display: flex;
 }
 .header > .menu{
-	min-width: 120px;margin-left: 16px;margin-right:16px;align-self: stretch;display: flex;font-size:40px;transition-duration: 200ms; touch-action: pan-y;
+	min-width: 120px;margin-left: 16px;margin-right:16px;align-self: stretch;display: flex;font-size:40px;
 }
