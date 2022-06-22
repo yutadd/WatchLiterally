@@ -1,6 +1,35 @@
+body{
+	margin:2px;background-color: #111111;
+}
 .header{
-	background-color:#dedede;width:100%;display: flex;
+	background-color:#2f2f2f;
+	width:100%;
+	display: flex;
+	box-shadow:2px 2px 8px;
+	
 }
 .header > .menu{
-	min-width: 120px;margin-left: 16px;margin-right:16px;align-self: stretch;display: flex;font-size:40px;
+	min-width: 30px;margin-left:
+	 16px;margin-right:16px;
+	 align-self: stretch;
+	 display: flex;
+	 font-size:26px;
+	 color:#c0c0c0;
 }
+.header > .menu:hover{
+	color:#f0f0f0;
+}
+.article{
+	  height:100vh;
+	  display:flex;
+}
+.sidebar{
+  width: 96px;
+  background-color: #2f2f2f;
+  box-sizing: border-box;
+  z-index:1;
+}
+.sidebar:hover{
+	width:180px
+}
+
