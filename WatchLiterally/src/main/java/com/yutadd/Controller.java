@@ -13,6 +13,6 @@ public class Controller {
 	@RequestMapping("streamsdata")
 	@ResponseBody
 	public String createjson() {
-		return "[{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\"},{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\"}]";
+		return "[{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\",\"name\":\"ninja\"},{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\",\"name\":\"ninja\"}]";
 	}
 }
