@@ -101,7 +101,10 @@ main {
 	padding-left: 96px;
 	width: 100%;
 }
-
+.player{
+	padding-top:12px;
+	text-align:center;
+}
 #video {
 	width: 800px;
 	height: 449px;

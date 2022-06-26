@@ -1,0 +1,10 @@
+1.c:\lives\test\でターミナルを開き、
+ffmpeg -passphrase passworddesu -i srt://localhost:3000?mode=listener -c:v copy -f hls -hls_time 2 -hls_playlist_type vod -hls_segment_filename "video%3d.ts" video.m3u8
+を実行することで、srtプロトコルでライブストリームを受け付けます。
+2.OBSで配信先を
+srt://localhost:3000?passphrase=passworddesu
+にしたうえで、配信開始します。
+3.jarファイルがあるディレクトリに戻り、ターミナルを開き、
+java -jar WatchLiterally-0.0.1.jar
+を実行します
+4.ブラウザでlocalhostを開くことで、ライブストリームを閲覧できます。

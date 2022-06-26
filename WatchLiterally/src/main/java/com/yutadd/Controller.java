@@ -24,7 +24,7 @@ public class Controller {
 	@RequestMapping("streamsdata")
 	@ResponseBody
 	public String createjson() {
-		return "[{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\",\"name\":\"ninja\",\"thumb\":\"/ninja0.jpg\",\"date\":\"2020/6/10\"},{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\",\"name\":\"ninja\",\"thumb\":\"/ninja0.jpg\",\"date\":\"2020/6/10\"}]";
+		return  "[{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\",\"name\":\"ninja\",\"thumb\":\"/ninja0.jpg\",\"date\":\"2020/6/10\"},{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\",\"name\":\"ninja\",\"thumb\":\"/ninja0.jpg\",\"date\":\"2020/6/10\"},{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\",\"name\":\"ninja\",\"thumb\":\"/ninja0.jpg\",\"date\":\"2020/6/10\"},{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\",\"name\":\"ninja\",\"thumb\":\"/ninja0.jpg\",\"date\":\"2020/6/10\"},{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\",\"name\":\"ninja\",\"thumb\":\"/ninja0.jpg\",\"date\":\"2020/6/10\"},{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\",\"name\":\"ninja\",\"thumb\":\"/ninja0.jpg\",\"date\":\"2020/6/10\"},{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\",\"name\":\"ninja\",\"thumb\":\"/ninja0.jpg\",\"date\":\"2020/6/10\"},{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\",\"name\":\"ninja\",\"thumb\":\"/ninja0.jpg\",\"date\":\"2020/6/10\"},{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\",\"name\":\"ninja\",\"thumb\":\"/ninja0.jpg\",\"date\":\"2020/6/10\"},{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\",\"name\":\"ninja\",\"thumb\":\"/ninja0.jpg\",\"date\":\"2020/6/10\"}]";
 	}
 
 	/* create m3u8 file from /videos/video{n}.ts */
