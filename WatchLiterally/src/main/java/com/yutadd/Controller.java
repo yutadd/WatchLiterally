@@ -10,9 +10,9 @@ public class Controller {
 		
 		return "index";
 	}
-	@RequestMapping("streamsdata")
+	@RequestMapping("enumstreams")
 	@ResponseBody
 	public String createjson() {
-		return "[{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\",\"name\":\"ninja\"},{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\",\"name\":\"ninja\"}]";
+		return "[{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\",\"name\":\"ninja\",\"thumb\":\"/ninja0.jpg\"},{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\",\"name\":\"ninja\",\"thumb\":\"/ninja0.jpg\"},{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\",\"name\":\"ninja\",\"thumb\":\"/ninja0.jpg\"},{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\",\"name\":\"ninja\",\"thumb\":\"/ninja0.jpg\"},{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\",\"name\":\"ninja\",\"thumb\":\"/ninja0.jpg\"},{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\",\"name\":\"ninja\",\"thumb\":\"/ninja0.jpg\"},{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\",\"name\":\"ninja\",\"thumb\":\"/ninja0.jpg\"},{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\",\"name\":\"ninja\",\"thumb\":\"/ninja0.jpg\"},{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\",\"name\":\"ninja\",\"thumb\":\"/ninja0.jpg\"},{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\",\"name\":\"ninja\",\"thumb\":\"/ninja0.jpg\"},{\"icon\":\"/icon.png\",\"title\":\"eyyyyyyyyyyyyy\",\"name\":\"ninja\",\"thumb\":\"/ninja0.jpg\"}]";
 	}
 }
