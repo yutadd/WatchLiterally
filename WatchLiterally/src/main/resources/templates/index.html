@@ -1,34 +1,52 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>ようこそ！</title>
-    <link rel="stylesheet" href="/main.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="/main.js"></script>
-    <script src="http://cdn.dashjs.org/latest/dash.all.min.js"></script>
-  </head>
-  <body>
-    <div class="header">
-      <a class=" menu">
-        <svg style="padding-top:5px;pointer-events: none; display: block; width: 50px; height: 30px;">
-          <path d="M21,4H3V5h50V4z M21,13H3v1h50V13z M21,22H3v1h50V22z">
-        </svg>
-      </a>
-      <div class="menu">
-        <a href="/"><img style="height:40px" alt="can't read logo" src="/logo.png"></img></a>
-      </div>
+
+<head>
+  <meta charset="UTF-8">
+  <title>ようこそ！</title>
+  <link rel="stylesheet" href="/main.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+
+</head>
+
+<body>
+  <div class="header">
+    <a class=" menu">
+      <svg style="padding-top:5px;pointer-events: none; display: block; width: 50px; height: 30px;">
+        <path d="M21,4H3V5h50V4z M21,13H3v1h50V13z M21,22H3v1h50V22z">
+      </svg>
+    </a>
+    <div class="menu">
+      <a href="/"><img style="height:40px" alt="can't read logo" src="/logo.png"></img></a>
     </div>
-    <article class="article">
-      <div class="sidebar">
+  </div>
+  <article class="article">
+    <div class="sidebar">
+    </div>
+    <main>
+    <div class="player" >
+      <video id="video"  controls width="640" height="360"></video>
+      <script>
+        var video = document.getElementById('video');
+        var videoSrc = 'http://localhost/m3u8';
+        if (Hls.isSupported()) {
+          var hls = new Hls();
+          hls.loadSource(videoSrc);
+          hls.attachMedia(video);
+         /* setInterval(() => {
+              hls.loadSource(videoSrc);
+            }, 10000);*/
+        }
+        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+          video.src = videoSrc;
+        }
+      </script>
       </div>
-      <main>
-        <div class="player">
-          <img style="width:100%;height:100%;" alt="image" src="/ninja0.gif">
-        </div>
-        <div class="recoms">
-        </div>
-      </main>
+<div class="recoms"></div>
+</main>
     </article>
   </body>
 </html>
