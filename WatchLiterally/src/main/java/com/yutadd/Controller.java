@@ -28,7 +28,7 @@ public class Controller {
 	}
 
 	/* create m3u8 file from /videos/video{n}.ts */
-	@RequestMapping("m3u8")
+	@RequestMapping("/m3u8")
 	@ResponseBody
 	public String createm3u8() {
 		System.out.println("ok");
