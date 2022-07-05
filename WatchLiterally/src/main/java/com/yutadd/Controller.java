@@ -20,7 +20,6 @@ public class Controller {
 		System.out.println("ok");
 		return "index";
 	}
-
 	@RequestMapping("streamsdata")
 	@ResponseBody
 	public String createjson() {
