@@ -17,7 +17,7 @@ public class Controller {
 
 	@RequestMapping({ "/", "/index.html", "/index.php", "index.htm" })
 	public String top() {
-
+		System.out.println("ok");
 		return "index";
 	}
 
@@ -31,7 +31,7 @@ public class Controller {
 	@RequestMapping("/m3u8")
 	@ResponseBody
 	public String createm3u8() {
-		System.out.println("ok");
+
 		String m3u8 ="#EXTM3U\r\n"
 				+ "#EXT-X-VERSION:3\r\n"
 				+ "#EXT-X-ALLOW-CACHE:YES\r\n"
