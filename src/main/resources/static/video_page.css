@@ -1,0 +1,42 @@
+main {
+	background-color: #fafafa;
+	padding-top: 50px;
+	padding-left: 16%;
+	width: 70%;
+}
+
+.player {
+	padding-top: 12px;
+	text-align: center;
+}
+
+#video {
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+}
+.chatoutside{
+	padding-top:55px;
+}
+#chat {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	height:100vh
+}
+#chat::-webkit-scrollbar{
+	width:4px
+}
+#chat::-webkit-scrollbar-track{
+	width:4px;
+	background-color:white;
+}
+#chat::-webkit-scrollbar-thumb{
+background-color:gray;	
+}
+
+.chat_element {
+	width: 100%;
+	padding: 5px 2px;
+	background-color: #f0f0f0;
+
+}
