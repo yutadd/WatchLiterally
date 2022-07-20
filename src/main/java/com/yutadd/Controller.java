@@ -28,6 +28,7 @@ public class Controller {
 
 	@RequestMapping({ "/", "/index.html", "/index.php", "index.htm" })
 	public String top() {
+		System.out.println(System.getProperty("file.encoding"));
 		return "index";
 	}
 
