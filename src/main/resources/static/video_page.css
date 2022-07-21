@@ -16,12 +16,14 @@ main {
 	margin: 0 auto;
 }
 .chatoutside{
-	padding-top:55px;
+	width:13%;
+	padding-left:3px;
+	padding-top:60px;
 }
 #chat {
 	overflow-y: scroll;
 	overflow-x: hidden;
-	height:100vh
+	height:70vh
 }
 #chat::-webkit-scrollbar{
 	width:4px
@@ -32,6 +34,18 @@ main {
 }
 #chat::-webkit-scrollbar-thumb{
 background-color:gray;	
+}
+.chat_form{
+	height:45px;
+	margin-top:auto;
+	padding-left:3px;
+}
+.chat_input{
+	font-size:25px;
+	border-radius: 10px;
+	padding-left:3px;
+	width:80%;
+	height:100%;
 }
 
 .chat_element {

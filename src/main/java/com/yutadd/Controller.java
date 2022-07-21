@@ -116,8 +116,8 @@ public class Controller {
 			boolean first = true;
 			String line = "";
 			while ((line = fr.readLine()) != null) {
-				if(new BigDecimal(line.split("§")[2]).compareTo(time_)<0) {
-					comment.add("{\"name\":\"" + line.split("§")[0] + "\",\"message\":\"" + line.split("§")[1] + "\",\"time\":\""+line.split("§")[2]+"\"}");
+				if(new BigDecimal(line.split("§")[0]).compareTo(time_)<0) {
+					comment.add("{\"name\":\"" + line.split("§")[2] + "\",\"message\":\"" + line.split("§")[1] + "\",\"time\":\""+line.split("§")[0]+"\"}");
 				}else {
 					break;
 				}
@@ -138,16 +138,19 @@ public class Controller {
 		return "500";
 	}
 
+	
 	@PostMapping("/{streamer}/{stream}/chat")
 	@ResponseBody
-	public String postchat(@PathVariable String streamer, @PathVariable String stream,
-			@RequestParam("name") String name, @RequestParam("message") String message) {
+	public String postchat(HttpServletRequest request,@PathVariable String streamer, @PathVariable String stream,
+			 @RequestParam("message") String message,@RequestParam("time") String time) {
+		System.out.println(message+"\t"+time);
 		try {
+			new BigDecimal(time);
 			File f = new File("c:\\lives\\" + streamer + "\\" + stream + "\\chat");
 			if(!f.exists()) {f.createNewFile();}
 			FileWriter fw = new FileWriter(f, true);
 			// validate name and message
-			if (name.length() >= 1 && message.length() >= 1) {
+			if ( message.length() >= 1) {
 				// decode CSS string
 				message = message.replace("&", "&amp;");
 				message = message.replace("<", "&lt;");
@@ -160,18 +163,7 @@ public class Controller {
 				message = message.replace("\r", "<br>");
 				message = message.replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
 				message = message.replace(" ", "&nbsp;");
-				name = name.replace("&", "&amp;");
-				name = name.replace("<", "&lt;");
-				name = name.replace(">", "&gt;");
-				name = name.replace("\"", "&quot;");
-				name = name.replace("'", "&#39;");
-				name = name.replace("/", "&#47;");
-				name = name.replace("\\", "&#92;");
-				name = name.replace("\n", "<br>");
-				name = name.replace("\r", "<br>");
-				name = name.replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
-				name = name.replace(" ", "&nbsp;");
-				fw.write(name + "§" + message + "\r\n");
+				fw.write(time+ "§" +message  +"§"+request.getRemoteAddr()+ "\r\n");
 				fw.close();
 				return "200";
 			} else {
@@ -183,6 +175,7 @@ public class Controller {
 		}
 		return "400";
 	}
+	
 
 	@RequestMapping("/{streamer}/{stream}/{file}")
 	@ResponseBody

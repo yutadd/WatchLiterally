@@ -32,12 +32,17 @@
 		<main>
 			<div class="player">
 				<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-				<video id="video" controls w></video>
+				<video id="video" controls></video>
 			</div>
 			<div class="recoms"></div>
 		</main>
 		<div class="chatoutside">
-		<div id="chat"></div>
+			<div id="chat"></div>
+			<div action="chat" class="chat_form" method="POST">
+				<textarea name=message class="chat_input"></textarea>
+				<input type="hidden" class="time" name="time" value=0>
+				<input type="submit" class="submit" value="Submit">
+			</div>
 		</div>
 	</article>
 </body>

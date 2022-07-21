@@ -1,5 +1,11 @@
 $(function() {
 	var ar = Array();
+	var chat = document.getElementById("chat");
+	chat.scrollTop = chat.scrollHeight;
+	document.getElementsByClassName("submit")[0].addEventListener('click', evt => {
+		console.log('posting message');
+		$.post('chat', 'message=' + document.getElementsByClassName("chat_input")[0].value+'&time=' + document.getElementById("video").currentTime, data => {console.log(data)})
+	})
 	setInterval(function() {
 		$.ajax({
 			type: "GET",
@@ -25,8 +31,6 @@ $(function() {
 				}
 			}
 			//scroll to bottom
-			var chat = document.getElementById("chat");
-			chat.scrollTop = chat.scrollHeight;
 
 		});
 	}, 1000);

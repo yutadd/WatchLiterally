@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 import org.bytedeco.ffmpeg.global.avutil;
 import org.bytedeco.javacv.FFmpegFrameGrabber;
@@ -28,11 +29,26 @@ public class Stream {
 		Thread th = new Thread() {
 			@Override
 			public void run() {
+				
 				try {
+					TreeSet<String> sortset=new TreeSet<String>();
+					File f0 = new File("c:\\lives\\" + streamerName + "\\" + streamName + "\\chat");
+					if(!f0.exists()) {f0.createNewFile();}
+					BufferedReader fr = new BufferedReader(new FileReader(f));
+					String line = "";
+					while ((line = fr.readLine()) != null) {
+						sortset.add(line);
+					}
+					fr.close();
+					FileWriter fw0 = new FileWriter(f);
+					for(String s:sortset) {
+						fw0.write(s+"\r\n");
+					}
+					fw0.close();
+					
 					if(!f.exists())f.createNewFile();
 					Path p = Paths.get("C:\\lives\\" + streamerName + "\\" + streamName);
 					BufferedReader br = new BufferedReader(new FileReader(f));
-					String line = "";
 					while ((line = br.readLine()) != null)
 						tsFilesInfo.add(line.split("§")[0]);
 					FFmpegLogCallback.setLevel(avutil.AV_LOG_ERROR);
