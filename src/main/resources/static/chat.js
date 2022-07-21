@@ -3,7 +3,6 @@ $(function() {
 	var chat = document.getElementById("chat");
 	chat.scrollTop = chat.scrollHeight;
 	document.getElementsByClassName("submit")[0].addEventListener('click', evt => {
-		console.log('posting message');
 		$.post('chat', 'message=' + document.getElementsByClassName("chat_input")[0].value+'&time=' + document.getElementById("video").currentTime, data => {console.log(data)})
 	})
 	setInterval(function() {
@@ -16,8 +15,6 @@ $(function() {
 			var jdata = JSON.parse(data);
 			for (var i = 0; i < jdata.length; i++) {
 				if (!ar.includes(jdata[i]["time"])) {
-					console.log(ar);
-					console.log(jdata[i]);
 					$("#chat").append("<div time=" + jdata[i]["time"] + " class=\"chat_element\"><span style=\"color:gray;\">" + jdata[i]["name"] + "</span><span style=\"color:green;\">: </span>" + jdata[i]["message"] + "</div>");
 					ar.push(jdata[i]["time"]);
 				}
