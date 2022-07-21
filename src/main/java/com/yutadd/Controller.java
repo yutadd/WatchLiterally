@@ -7,7 +7,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,10 +21,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
+/* server:
+ffmpeg -passphrase passworddesu -i srt://localhost:3000?mode=listener -c:v copy -f hls -hls_time 2 -hls_playlist_type vod -hls_segment_filename "video%3d.ts" video.m3u8
+client:
+srt://localhost:3000?passphrase=passworddesu
+*/
 @org.springframework.stereotype.Controller
-// ffmpeg -passphrase passworddesu -i srt://localhost:3000?mode=listener -c:v
-// copy -f hls -hls_time 2 -hls_playlist_type vod -hls_segment_filename
-// "video%3d.ts" video.m3u8
 public class Controller {
 	// キャッシュの作成
 	static CreateCache streamers = new CreateCache();
@@ -49,7 +56,6 @@ public class Controller {
 			} else {
 				json += "," + onlines.get(s);
 			}
-
 		}
 		return json + "]";
 	}
@@ -99,7 +105,9 @@ public class Controller {
 
 	@GetMapping("/{streamer}/{stream}/chat")
 	@ResponseBody
-	public String getchat(@PathVariable String streamer, @PathVariable String stream) {
+	public String getchat(@PathVariable String streamer, @PathVariable String stream,@RequestParam String time){
+		ArrayList<String> comment=new ArrayList<String>();
+		BigDecimal time_=new BigDecimal(time);
 		try {
 			File f = new File("c:\\lives\\" + streamer + "\\" + stream + "\\chat");
 			if(!f.exists()) {f.createNewFile();}
@@ -108,11 +116,18 @@ public class Controller {
 			boolean first = true;
 			String line = "";
 			while ((line = fr.readLine()) != null) {
-				if (first) {
-					result += "{\"name\":\"" + line.split("§")[0] + "\",\"message\":\"" + line.split("§")[1] + "\"}";
-					first = false;
-				} else {
-					result += ",{\"name\":\"" + line.split("§")[0] + "\",\"message\":\"" + line.split("§")[1] + "\"}";
+				if(new BigDecimal(line.split("§")[2]).compareTo(time_)<0) {
+					comment.add("{\"name\":\"" + line.split("§")[0] + "\",\"message\":\"" + line.split("§")[1] + "\",\"time\":\""+line.split("§")[2]+"\"}");
+				}else {
+					break;
+				}
+			}
+			for(String s:comment) {
+				if(first) {
+					result+=s;
+					first=false;
+				}else {
+					result+=","+s;
 				}
 			}
 			fr.close();
@@ -160,6 +175,7 @@ public class Controller {
 				fw.close();
 				return "200";
 			} else {
+				fw.close();
 				return "400";
 			}
 		} catch (Exception e) {
@@ -170,11 +186,16 @@ public class Controller {
 
 	@RequestMapping("/{streamer}/{stream}/{file}")
 	@ResponseBody
-	public byte[] video(@PathVariable String streamer, @PathVariable String stream, @PathVariable String file)
+	public byte[] video(HttpServletRequest request,@PathVariable String streamer, @PathVariable String stream, @PathVariable String file)
 			throws IOException {
-		System.out.println("c:\\lives\\" + streamer + "\\" + stream + "\\" + file);
+		System.out.println("c:\\lives\\" + streamer + "\\" + stream + "\\" + file+"    ("+request.getRemoteAddr()+")");
+		try {
 		InputStream in = new FileInputStream(new File("c:\\lives\\" + streamer + "\\" + stream + "\\" + file));
 		return IOUtils.toByteArray(in);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "404".getBytes();
 	}
 
 	@RequestMapping("/{streamer}/{file}")
