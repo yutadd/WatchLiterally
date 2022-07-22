@@ -2,8 +2,12 @@ package com.yutadd;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -31,7 +35,7 @@ public class Streamer {
 		try {
 			if (!f.exists())
 				f.createNewFile();
-			BufferedReader br = new BufferedReader(new FileReader(f));
+			BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(f),"utf-8"));
 			String line = "";
 			while ((line = br.readLine()) != null)
 				streams.put(line, new Stream(streamerName, line));
@@ -40,9 +44,9 @@ public class Streamer {
 					if (f2.isDirectory()) {
 						if (!streams.containsKey(f2.getName())) {
 							streams.put(f2.getName(), new Stream(streamerName, f2.getName()));
-							FileWriter fw = new FileWriter(f, true);
-							fw.write(f2.getName() + "\r\n");
-							fw.close();
+							OutputStreamWriter osw  = new OutputStreamWriter(new FileOutputStream(f), "UTF-8");
+							osw.append(f2.getName() + "\r\n");
+							osw.close();
 						}
 					}
 				}

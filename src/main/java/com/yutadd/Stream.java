@@ -2,9 +2,13 @@ package com.yutadd;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -34,7 +38,7 @@ public class Stream {
 					TreeSet<String> sortset=new TreeSet<String>();
 					File f0 = new File("c:\\lives\\" + streamerName + "\\" + streamName + "\\chat");
 					if(!f0.exists()) {f0.createNewFile();}
-					BufferedReader fr = new BufferedReader(new FileReader(f));
+					BufferedReader fr = new BufferedReader(new InputStreamReader(new FileInputStream(f0),"utf-8"));
 					String line = "";
 					while ((line = fr.readLine()) != null) {
 						sortset.add(line);
@@ -48,9 +52,10 @@ public class Stream {
 					
 					if(!f.exists())f.createNewFile();
 					Path p = Paths.get("C:\\lives\\" + streamerName + "\\" + streamName);
-					BufferedReader br = new BufferedReader(new FileReader(f));
+					BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(f),"utf-8"));
 					while ((line = br.readLine()) != null)
 						tsFilesInfo.add(line.split("§")[0]);
+					br.close();
 					FFmpegLogCallback.setLevel(avutil.AV_LOG_ERROR);
 					while (true) {
 						for (File f2 : p.toFile().listFiles()) {
@@ -59,8 +64,8 @@ public class Stream {
 									//新しいファイルが追加され続けているということはライブ中。なので、本来はここで、Controller.onlinesに追加する。
 									FFmpegFrameGrabber mInputGrabber = new FFmpegFrameGrabber(f2);
 									mInputGrabber.start();
-									FileWriter fw = new FileWriter(f, true);
-									fw.write(f2.getName() + "§" + (mInputGrabber.getLengthInFrames()
+									OutputStreamWriter fw  = new OutputStreamWriter(new FileOutputStream(f), "UTF-8");
+									fw.append(f2.getName() + "§" + (mInputGrabber.getLengthInFrames()
 											/ (float) mInputGrabber.getFrameRate()) + "\r\n");
 									fw.close();
 									tsFilesInfo.add(f2.getName());
